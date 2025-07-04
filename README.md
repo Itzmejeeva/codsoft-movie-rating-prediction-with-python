@@ -377,6 +377,8 @@ for review in reviews:
     from statsmodels.tsa.arima.model import ARIMA
 yearly_avg = df.groupby('Year')['Rating'].mean()
 
+
+
 # Convert the index to datetime objects
 yearly_avg.index = pd.to_datetime(-yearly_avg.index, format='%Y')
 
