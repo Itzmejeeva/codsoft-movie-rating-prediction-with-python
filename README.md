@@ -396,6 +396,8 @@ plt.fill_between(forecast_index,
 plt.title('Movie Rating Trends and Forecast')
 plt.legend()
 plt.show()
+
+
 "C:\Users\jeeva\Downloads\Screenshot_4-7-2025_19034_colab.research.google.com.jpeg"
 ## Conclusion
 In conclusion, this project allowed us to explore various data analysis, data preprocessing, feature engineering, and machine learning modeling techniques. It provided valuable insights into the factors influencing movie ratings and equipped us with a model for accurate movie rating predictions.
