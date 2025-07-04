@@ -362,6 +362,41 @@ print(f'R-squared score: {r2_gb}')
 ```
 ![image](https://github.com/Tayyaba-Abro/CodSoft-Internship-Task---Movie-Rating-Prediction-with-Python/assets/47588244/89bab72a-ad5d-419c-b5af-a125c2870050)
 
+!pip install textblob
+from textblob import TextBlob
+reviews = [
+    "This movie was absolutely fantastic! The acting was superb.",
+    "Terrible plot with bad acting. Would not recommend.",
+    "Average movie with some good moments but poor ending."
+]
+for review in reviews:
+    analysis = TextBlob(review)
+    print(f"Review: {review}")
+    print(f"Sentiment: {analysis.sentiment.polarity:.2f}")
+    print(f"Subjectivity: {analysis.sentiment.subjectivity:.2f}\n")
+    from statsmodels.tsa.arima.model import ARIMA
+yearly_avg = df.groupby('Year')['Rating'].mean()
+
+# Convert the index to datetime objects
+yearly_avg.index = pd.to_datetime(-yearly_avg.index, format='%Y')
+
+
+model = ARIMA(yearly_avg, order=(1,1,1))
+results = model.fit()
+forecast = results.get_forecast(steps=5)
+forecast_index = pd.date_range(start=yearly_avg.index.max(), periods=6, freq='Y')[1:]
+
+plt.figure(figsize=(12,6))
+plt.plot(yearly_avg.index, yearly_avg, label='Historical')
+plt.plot(forecast_index, forecast.predicted_mean, label='Forecast', color='red')
+plt.fill_between(forecast_index,
+                forecast.conf_int()['lower Rating'],
+                forecast.conf_int()['upper Rating'],
+                color='pink', alpha=0.3)
+plt.title('Movie Rating Trends and Forecast')
+plt.legend()
+plt.show()
+"C:\Users\jeeva\Downloads\Screenshot_4-7-2025_19034_colab.research.google.com.jpeg"
 ## Conclusion
 In conclusion, this project allowed us to explore various data analysis, data preprocessing, feature engineering, and machine learning modeling techniques. It provided valuable insights into the factors influencing movie ratings and equipped us with a model for accurate movie rating predictions.
 
